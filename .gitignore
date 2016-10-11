@@ -1,5 +1,6 @@
-
 # Created by https://www.gitignore.io/api/windows,linux,c++,visualstudio,visualstudiocode
+
+CLONE_REPO
 
 ### Windows ###
 # Windows image file caches
