@@ -1,8 +1,9 @@
 #include "Monkey.h"
+#include <iostream>
 
 Monkey::Monkey() : Player()
 {
-    SetName("Monkey");
+    SetName("Jorma");
 }
 
 Monkey::Monkey(std::string name) : Player()
@@ -21,7 +22,7 @@ void Monkey::Prepare()
 Hand Monkey::AskMove(GameState state)
 {
     Hand table = state.table;
-    Hand myHand;
+   Hand myHand;
 
     if(table.value == CARDS::PASS)
     {
@@ -39,31 +40,12 @@ Hand Monkey::AskMove(GameState state)
     }
     else
     {
-        for(int i = (table.value - 1); i != 0; i--)
-        {
-            if(CountCard(i) != 0) // Does player have good enough cards.
-            {
-                if((CountCard(i) + GetJesterAmount()) >= (table.amount + table.jesters))
-                {
-                    if(CountCard(i) < (table.amount + table.jesters)) // Needs jesters.
-                    {
-                        int jesters = (table.amount /*+ table.jesters*/) - CountCard(i);
+       
+        myHand.value = i;
+        myHand.amount = CountCard(i);
+        myHand.jesters = 0;
+        return myHand;
 
-                        myHand.value = i;
-                        myHand.amount = CountCard(i);
-                        myHand.jesters = jesters;
-                        return myHand;
-                    }
-                    else // No jesters needed.
-                    {
-                        myHand.value = i;
-                        myHand.amount = CountCard(i);
-                        myHand.jesters = 0;
-                        return myHand;
-                    }
-                }
-            }
-        }
     }
 
     return Hand();
@@ -71,5 +53,6 @@ Hand Monkey::AskMove(GameState state)
 
 int Monkey::GiveCard()
 {
+    std::out << "hahaa\n";
     return CARDS::PASS;
 }
